@@ -105,6 +105,30 @@ dataset_defaults = {
         },
         'process_outputs_function': 'multiclass_logits_to_pred',
     },
+    'mnli': {
+        'split_scheme': 'official',
+        'model': 'distilbert-base-uncased',
+        'train_transform': 'bert',
+        'eval_transform': 'bert',
+        'loss_function': 'cross_entropy',
+        'groupby_fields': ['contains_negation', 'y'],
+        'val_metric': 'acc_wg',
+        'val_metric_decreasing': False,
+        'batch_size': 16,
+        'lr': 1e-5,
+        'weight_decay': 0.01,
+        'n_epochs': 5,
+        'algo_log_metric': 'accuracy',
+        'max_token_length': 300,
+        'irm_lambda': 1.0,
+        'coral_penalty_weight': 10.0,
+        'loader_kwargs': {
+            'num_workers': 1,
+            'pin_memory': True,
+        },
+        'process_outputs_function': 'multiclass_logits_to_pred',
+    },
+
     'fmow': {
         'split_scheme': 'official',
         'dataset_kwargs': {
