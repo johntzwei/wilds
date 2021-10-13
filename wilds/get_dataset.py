@@ -17,6 +17,10 @@ def get_dataset(dataset, version=None, **dataset_kwargs):
     if dataset not in wilds.supported_datasets:
         raise ValueError(f'The dataset {dataset} is not recognized. Must be one of {wilds.supported_datasets}.')
 
+    if dataset == 'mr':
+        from wilds.datasets.imdb_sst2_dataset import IMDBandSST2Dataset
+        return IMDBandSST2Dataset(version=version, **dataset_kwargs)
+
     if dataset == 'mnli':
         from wilds.datasets.mnli_dataset import MNLIDataset
         return MNLIDataset(version=version, **dataset_kwargs)
